@@ -1,0 +1,139 @@
+import type { Lead } from "../types"
+
+export const initialLeads: Lead[] = [
+  {
+    id: "1",
+    name: "John Doe",
+    company: "Innovate Inc.",
+    email: "john.doe@innovate.com",
+    source: "Website",
+    score: 95,
+    status: "New"
+  },
+  {
+    id: "2",
+    name: "Jane Smith",
+    company: "Global Solutions",
+    email: "jane.smith@global.com",
+    source: "Referral",
+    score: 88,
+    status: "Contacted"
+  },
+  {
+    id: "3",
+    name: "Peter Jones",
+    company: "Tech Innovations",
+    email: "peter.jones@techinno.com",
+    source: "Cold Call",
+    score: 72,
+    status: "New"
+  },
+  {
+    id: "4",
+    name: "Mary White",
+    company: "Data Insights Co.",
+    email: "mary.white@datainsights.com",
+    source: "Partnership",
+    score: 91,
+    status: "Qualified"
+  },
+  {
+    id: "5",
+    name: "Robert Brown",
+    company: "Alpha Corp",
+    email: "robert.brown@alpha.com",
+    source: "Event",
+    score: 65,
+    status: "New"
+  },
+  {
+    id: "6",
+    name: "Lisa Taylor",
+    company: "Venture Capital",
+    email: "lisa.taylor@venture.com",
+    source: "Website",
+    score: 80,
+    status: "Contacted"
+  },
+  {
+    id: "7",
+    name: "Michael Green",
+    company: "Future Labs",
+    email: "michael.green@futurelabs.com",
+    source: "Website",
+    score: 99,
+    status: "New"
+  },
+  {
+    id: "8",
+    name: "Anna Black",
+    company: "Sunrise Tech",
+    email: "anna.black@sunrise.com",
+    source: "Referral",
+    score: 85,
+    status: "New"
+  },
+  {
+    id: "9",
+    name: "David Wilson",
+    company: "Core Systems",
+    email: "david.wilson@coresys.com",
+    source: "Website",
+    score: 78,
+    status: "Contacted"
+  },
+  {
+    id: "10",
+    name: "Laura Hall",
+    company: "Pinnacle Group",
+    email: "laura.hall@pinnacle.com",
+    source: "Cold Call",
+    score: 93,
+    status: "Qualified"
+  },
+  {
+    id: "11",
+    name: "James Adams",
+    company: "Next Gen Solutions",
+    email: "james.adams@nextgen.com",
+    source: "Partnership",
+    score: 60,
+    status: "New"
+  },
+  {
+    id: "12",
+    name: "Emily Clark",
+    company: "Digital Wave",
+    email: "emily.clark@digitalwave.com",
+    source: "Event",
+    score: 82,
+    status: "Contacted"
+  },
+  {
+    id: "13",
+    name: "Kevin King",
+    company: "Enterprise Solutions",
+    email: "kevin.king@enterprise.com",
+    source: "Website",
+    score: 75,
+    status: "New"
+  },
+  {
+    id: "14",
+    name: "Olivia Scott",
+    company: "Innovative Corp",
+    email: "olivia.scott@innovativecorp.com",
+    source: "Referral",
+    score: 90,
+    status: "New"
+  },
+  {
+    id: "15",
+    name: "William Baker",
+    company: "Tech Pioneers",
+    email: "william.baker@techpioneers.com",
+    source: "Cold Call",
+    score: 68,
+    status: "Contacted"
+  }
+]
