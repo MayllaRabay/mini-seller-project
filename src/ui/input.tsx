@@ -25,7 +25,7 @@ const Input = React.forwardRef<HTMLInputElement, InputProps>(
     const hasError = error || variant === "error"
 
     const baseStyles =
-      "flex w-full rounded-xl border bg-white transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-secondary-400 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
+      "flex w-full rounded-xl border bg-secondary-50 transition-all duration-200 file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-secondary-500 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50"
 
     const variantStyles = {
       default:

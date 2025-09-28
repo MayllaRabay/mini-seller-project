@@ -25,11 +25,11 @@ const Select = React.forwardRef<HTMLSelectElement, SelectProps>(
     const hasError = error || variant === "error"
 
     const baseStyles =
-      "flex w-full rounded-xl border bg-white transition-all duration-200 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 appearance-none cursor-pointer hover:bg-secondary-50"
+      "flex w-full rounded-xl border bg-secondary-50 transition-all duration-200 focus-visible:outline-none disabled:cursor-not-allowed disabled:opacity-50 appearance-none cursor-pointer hover:bg-secondary-100"
 
     const variantStyles = {
       default:
-        "border-neutral-200 text-secondary-600 hover:border-secondary-300 focus-visible:border-secondary-500 focus-visible:ring-2 focus-visible:ring-secondary-100",
+        "border-neutral-200 text-secondary-700 hover:border-secondary-300 focus-visible:border-secondary-500 focus-visible:ring-2 focus-visible:ring-secondary-100",
       error:
         "border-accent-500 text-neutral-900 focus-visible:border-accent-500 focus-visible:ring-2 focus-visible:ring-accent-100 bg-accent-50/30 hover:bg-accent-50/50",
       success:

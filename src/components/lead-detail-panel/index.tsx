@@ -75,7 +75,7 @@ export const LeadDetailPanel = ({
           isOpen ? "transform translate-x-0" : "transform translate-x-full"
         }`}
       >
-        <div className="flex flex-col h-full bg-gray-50 p-6 rounded-l-lg">
+        <div className="flex flex-col h-full bg-secondary-50 p-6 rounded-l-lg">
           <div className="flex items-center justify-between pb-4 border-b border-gray-200">
             <Text as="h2" variant="large" weight="semibold" color="dark">
               {lead?.name || "Lead Details"}
@@ -166,9 +166,7 @@ export const LeadDetailPanel = ({
                 <Button
                   onClick={handleConvertLead}
                   disabled={lead?.status === "Converted"}
-                  variant={
-                    lead?.status === "Converted" ? "secondary" : "primary"
-                  }
+                  variant={"primary"}
                   className="w-full"
                 >
                   Convert to Opportunity

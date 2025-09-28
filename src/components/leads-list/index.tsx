@@ -20,35 +20,39 @@ export const LeadsList = ({
   setFilterStatus,
   onLeadClick
 }: LeadsListProps) => {
+  const tableHeaders = ["Name", "Company", "Email", "Status", "Score", "Source"]
+
   return (
-    <div className="lg:col-span-2 bg-white rounded-lg shadow-lg p-6">
-      <Text
-        variant="large"
-        weight="semibold"
-        color="dark"
-        className="w-full mb-4"
-      >
-        Leads List
-      </Text>
-      <div className="flex justify-end items-end gap-2 w-full mb-4 md:flex-col lg:flex-row ">
-        <Input
-          type="text"
-          placeholder="Search by name or company..."
-          value={searchTerm}
-          onChange={(e) => setSearchTerm(e.target.value)}
-          className="w-full sm:w-64 text-sm"
-        />
-        <Select
-          value={filterStatus}
-          onChange={(e) => setFilterStatus(e.target.value)}
-          className="w-full sm:w-48 text-sm"
+    <div className="lg:col-span-2 bg-secondary-50 rounded-lg shadow-lg p-6">
+      <div className="flex flex-col lg:flex-row justify-between">
+        <Text
+          variant="large"
+          weight="semibold"
+          color="dark"
+          className="w-full mb-4"
         >
-          <option value="All">All Statuses</option>
-          <option value="New">New</option>
-          <option value="Contacted">Contacted</option>
-          <option value="Qualified">Qualified</option>
-          <option value="Converted">Converted</option>
-        </Select>
+          Leads List
+        </Text>
+        <div className="flex justify-end items-end gap-2 w-full mb-4 md:flex-col lg:flex-row ">
+          <Input
+            type="text"
+            placeholder="Search by name or company..."
+            value={searchTerm}
+            onChange={(e) => setSearchTerm(e.target.value)}
+            className="w-full sm:w-64 text-sm"
+          />
+          <Select
+            value={filterStatus}
+            onChange={(e) => setFilterStatus(e.target.value)}
+            className="w-full sm:w-48 text-sm"
+          >
+            <option value="All">All Statuses</option>
+            <option value="New">New</option>
+            <option value="Contacted">Contacted</option>
+            <option value="Qualified">Qualified</option>
+            <option value="Converted">Converted</option>
+          </Select>
+        </div>
       </div>
 
       {isLoading && (
@@ -64,67 +68,29 @@ export const LeadsList = ({
       )}
 
       {!isLoading && leads.length > 0 && (
-        <div className="overflow-auto rounded-lg border border-gray-200 shadow-sm max-h-[calc(100vh-21rem)]">
+        <div className="overflow-auto rounded-lg border border-gray-200 shadow-sm max-h-[calc(100vh-23rem)] md:max-h-[calc(100vh-29rem)] lg:max-h-[calc(100vh-23rem)]">
           <table className="min-w-full divide-y divide-gray-200">
-            <thead className="bg-gray-50">
-              <tr>
-                <th scope="col" className="px-6 py-3 text-left">
-                  <Text
-                    variant="small"
-                    weight="medium"
-                    color="muted"
-                    className="uppercase tracking-wider"
-                  >
-                    Name
-                  </Text>
-                </th>
-                <th scope="col" className="px-6 py-3 text-left">
-                  <Text
-                    variant="small"
-                    weight="medium"
-                    color="muted"
-                    className="uppercase tracking-wider"
-                  >
-                    Company
-                  </Text>
-                </th>
-                <th scope="col" className="px-6 py-3 text-left">
-                  <Text
-                    variant="small"
-                    weight="medium"
-                    color="muted"
-                    className="uppercase tracking-wider"
-                  >
-                    Email
-                  </Text>
-                </th>
-                <th scope="col" className="px-6 py-3 text-left">
-                  <Text
-                    variant="small"
-                    weight="medium"
-                    color="muted"
-                    className="uppercase tracking-wider"
-                  >
-                    Status
-                  </Text>
-                </th>
-                <th scope="col" className="px-6 py-3 text-left">
-                  <Text
-                    variant="small"
-                    weight="medium"
-                    color="muted"
-                    className="uppercase tracking-wider"
-                  >
-                    Score
-                  </Text>
-                </th>
-              </tr>
+            <thead className="bg-secondary-100 sticky top-0 z-10">
+              {tableHeaders.map((header) => {
+                return (
+                  <th key={header} scope="col" className="px-6 py-3 text-left">
+                    <Text
+                      variant="small"
+                      weight="medium"
+                      color="muted"
+                      className="uppercase tracking-wider"
+                    >
+                      {header}
+                    </Text>
+                  </th>
+                )
+              })}
             </thead>
-            <tbody className="bg-white divide-y divide-gray-200">
+            <tbody className="bg-secondary-50 divide-y divide-gray-200">
               {leads.map((lead) => (
                 <tr
                   key={lead.id}
-                  className="hover:bg-secondary-50 transition-colors cursor-pointer"
+                  className="hover:bg-secondary-100 transition-colors cursor-pointer"
                   onClick={() => onLeadClick(lead)}
                 >
                   <td className="px-6 py-4 whitespace-nowrap">
@@ -160,6 +126,11 @@ export const LeadsList = ({
                   <td className="px-6 py-4 whitespace-nowrap">
                     <Text variant="caption" color="primary">
                       {lead.score}
+                    </Text>
+                  </td>
+                  <td className="px-6 py-4 whitespace-nowrap">
+                    <Text variant="caption" color="primary">
+                      {lead.source}
                     </Text>
                   </td>
                 </tr>
