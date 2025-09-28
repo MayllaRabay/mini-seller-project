@@ -5,6 +5,8 @@ export class LeadManager {
   private leads: Lead[] = []
   private opportunities: Opportunity[] = []
   private loading = false
+  private error: string | null = null
+  private success: string | null = null
   private searchTerm = localStorage.getItem("searchTerm") || ""
   private filterStatus = localStorage.getItem("filterStatus") || "All"
 
@@ -12,6 +14,24 @@ export class LeadManager {
 
   get isLoading() {
     return this.loading
+  }
+
+  get lastError() {
+    return this.error
+  }
+
+  get lastSuccess() {
+    return this.success
+  }
+
+  clearError() {
+    this.error = null
+    this.notify()
+  }
+
+  clearSuccess() {
+    this.success = null
+    this.notify()
   }
 
   get allLeads() {
@@ -48,7 +68,6 @@ export class LeadManager {
     return filtered.sort((a, b) => b.score - a.score)
   }
 
-  // ===== NOTIFICAÇÕES =====
   subscribe(callback: () => void) {
     this.listeners.push(callback)
     return () => {
@@ -67,38 +86,88 @@ export class LeadManager {
   }
 
   updateLead(updatedLead: Lead) {
+    const originalLeads = [...this.leads]
+
+    this.leads = this.leads.map((lead) =>
+      lead.id === updatedLead.id ? updatedLead : lead
+    )
+    this.error = null
+    this.success = null
+    this.notify()
+
     this.loading = true
     this.notify()
 
     setTimeout(() => {
-      this.leads = this.leads.map((lead) =>
-        lead.id === updatedLead.id ? updatedLead : lead
-      )
+      const shouldFail = Math.random() < 0.2
+
+      if (shouldFail) {
+        this.leads = originalLeads
+        this.error = "Failed to update lead. Changes reverted."
+        this.success = null
+        setTimeout(() => {
+          this.error = null
+          this.notify()
+        }, 5000)
+      } else {
+        this.error = null
+        this.success = `Lead "${updatedLead.name}" updated successfully!`
+        setTimeout(() => {
+          this.success = null
+          this.notify()
+        }, 5000)
+      }
+
       this.loading = false
       this.notify()
     }, 2000)
   }
 
   convertLeadToOpportunity(leadToConvert: Lead) {
+    const originalLeads = [...this.leads]
+    const originalOpportunities = [...this.opportunities]
+
+    const opportunity: Opportunity = {
+      id: generateUUID(),
+      name: leadToConvert.name,
+      stage: "Prospecting",
+      amount: null,
+      accountName: leadToConvert.company
+    }
+
+    this.opportunities.push(opportunity)
+    this.leads = this.leads.map((lead) =>
+      lead.id === leadToConvert.id
+        ? { ...lead, status: "Converted" as const }
+        : lead
+    )
+    this.error = null
+    this.success = null
+    this.notify()
+
     this.loading = true
     this.notify()
 
     setTimeout(() => {
-      const opportunity: Opportunity = {
-        id: generateUUID(),
-        name: leadToConvert.name,
-        stage: "Prospecting",
-        amount: null,
-        accountName: leadToConvert.company
+      const shouldFail = Math.random() < 0.2
+
+      if (shouldFail) {
+        this.leads = originalLeads
+        this.opportunities = originalOpportunities
+        this.error = "Failed to convert lead. Changes reverted."
+        this.success = null
+        setTimeout(() => {
+          this.error = null
+          this.notify()
+        }, 5000)
+      } else {
+        this.error = null
+        this.success = `Lead "${leadToConvert.name}" successfully converted to opportunity!`
+        setTimeout(() => {
+          this.success = null
+          this.notify()
+        }, 5000)
       }
-
-      this.opportunities.push(opportunity)
-
-      this.leads = this.leads.map((lead) =>
-        lead.id === leadToConvert.id
-          ? { ...lead, status: "Converted" as const }
-          : lead
-      )
 
       this.loading = false
       this.notify()

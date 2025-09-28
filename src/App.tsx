@@ -1,13 +1,19 @@
 import { useEffect, useState } from "react"
 import { createPortal } from "react-dom"
-import { LeadDetailPanel, LeadsList, OpportunitiesList } from "./components"
+import {
+  LeadDetailPanel,
+  LeadsList,
+  OpportunitiesList,
+  ToastContainer
+} from "./components"
 import { initialLeads } from "./data"
-import { useLeadManager } from "./hooks"
+import { useLeadManager, useToast } from "./hooks"
 import type { Lead } from "./types"
 import { Text } from "./ui"
 
 const App: React.FC = () => {
   const leadManager = useLeadManager()
+  const toast = useToast()
 
   const [selectedLead, setSelectedLead] = useState<Lead | null>(null)
   const [isPanelOpen, setIsPanelOpen] = useState<boolean>(false)
@@ -15,6 +21,18 @@ const App: React.FC = () => {
   useEffect(() => {
     leadManager.loadLeads(initialLeads)
   }, []) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (leadManager.lastError) {
+      toast.showError(leadManager.lastError)
+    }
+  }, [leadManager.lastError]) // eslint-disable-line react-hooks/exhaustive-deps
+
+  useEffect(() => {
+    if (leadManager.lastSuccess) {
+      toast.showSuccess(leadManager.lastSuccess)
+    }
+  }, [leadManager.lastSuccess]) // eslint-disable-line react-hooks/exhaustive-deps
 
   const handleLeadClick = (lead: Lead) => {
     setSelectedLead(lead)
@@ -87,6 +105,14 @@ const App: React.FC = () => {
           onSave={handleSave}
           onConvert={handleConvert}
           onLoading={leadManager.isLoading}
+        />,
+        document.body
+      )}
+
+      {createPortal(
+        <ToastContainer
+          toasts={toast.toasts}
+          onRemoveToast={toast.removeToast}
         />,
         document.body
       )}

@@ -71,20 +71,26 @@ export const LeadsList = ({
         <div className="overflow-auto rounded-lg border border-gray-200 shadow-sm max-h-[calc(100vh-23rem)] md:max-h-[calc(100vh-29rem)] lg:max-h-[calc(100vh-23rem)]">
           <table className="min-w-full divide-y divide-gray-200">
             <thead className="bg-secondary-100 sticky top-0 z-10">
-              {tableHeaders.map((header) => {
-                return (
-                  <th key={header} scope="col" className="px-6 py-3 text-left">
-                    <Text
-                      variant="small"
-                      weight="medium"
-                      color="muted"
-                      className="uppercase tracking-wider"
+              <tr>
+                {tableHeaders.map((header) => {
+                  return (
+                    <th
+                      key={header}
+                      scope="col"
+                      className="px-6 py-3 text-left"
                     >
-                      {header}
-                    </Text>
-                  </th>
-                )
-              })}
+                      <Text
+                        variant="small"
+                        weight="medium"
+                        color="muted"
+                        className="uppercase tracking-wider"
+                      >
+                        {header}
+                      </Text>
+                    </th>
+                  )
+                })}
+              </tr>
             </thead>
             <tbody className="bg-secondary-50 divide-y divide-gray-200">
               {leads.map((lead) => (

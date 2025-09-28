@@ -15,6 +15,8 @@ export function useLeadManager() {
 
   return {
     isLoading: manager.isLoading,
+    lastError: manager.lastError,
+    lastSuccess: manager.lastSuccess,
     leads: manager.allLeads,
     opportunities: manager.allOpportunities,
     filters: manager.filters,
@@ -25,6 +27,8 @@ export function useLeadManager() {
     convertLeadToOpportunity: (lead: Lead) =>
       manager.convertLeadToOpportunity(lead),
     setSearchTerm: (term: string) => manager.setSearchTerm(term),
-    setFilterStatus: (status: string) => manager.setFilterStatus(status)
+    setFilterStatus: (status: string) => manager.setFilterStatus(status),
+    clearError: () => manager.clearError(),
+    clearSuccess: () => manager.clearSuccess()
   }
 }
