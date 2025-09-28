@@ -31,7 +31,7 @@ export const LeadsList = ({
           color="dark"
           className="w-full mb-4"
         >
-          Leads List
+          Leads
         </Text>
         <div className="flex justify-end items-end gap-2 w-full mb-4 md:flex-col lg:flex-row ">
           <Input

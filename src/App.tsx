@@ -92,7 +92,13 @@ const App: React.FC = () => {
           />
           <OpportunitiesList opportunities={leadManager.opportunities} />
         </div>
-        <Text variant="caption" className="flex justify-end text-secondary-500">
+      </div>
+
+      <div className="fixed bottom-4 right-4 z-10 pointer-events-none">
+        <Text
+          variant="caption"
+          className="text-secondary-500 bg-secondary-50/80 backdrop-blur-sm px-3 py-1 rounded-full shadow-sm"
+        >
           Made with 💜 by Maylla Rabay
         </Text>
       </div>
