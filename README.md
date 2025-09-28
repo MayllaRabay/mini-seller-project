@@ -6,18 +6,19 @@
 
 A lightweight console to triage **Leads** and convert them into **Opportunities**.
 
-> 🚀 **[Live Demo](#)** | 🧪 **35 Tests Passing** | ✨ **Clean Architecture**
+> 🚀 **[Live Demo](https://mini-seller-project.vercel.app/)** | 🧪 **35 Tests Passing** | ✨ **Clean Architecture**
 
 ## 📸 Screenshots
 
-> 💡 **Tip**: Screenshots will be added after deployment to showcase the live application
-
-**Planned Screenshots:**
-
 - 📋 Main dashboard with leads list
+  <img alt="" src="./public/image.png" />
 - 📝 Lead detail panel (slide-over)
+  <img alt="" src="./public/image-1.png" />
 - 💼 Opportunities management
+  <img alt="" src="./public/image-2.png" />
 - 📱 Mobile-responsive design
+  <br />
+  <img alt="" src="./public/image-3.png" />
 
 ## 📋 Features (MVP)
 
