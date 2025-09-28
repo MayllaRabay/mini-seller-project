@@ -6,6 +6,19 @@
 
 A lightweight console to triage **Leads** and convert them into **Opportunities**.
 
+> 🚀 **[Live Demo](#)** | 🧪 **35 Tests Passing** | ✨ **Clean Architecture**
+
+## 📸 Screenshots
+
+> 💡 **Tip**: Screenshots will be added after deployment to showcase the live application
+
+**Planned Screenshots:**
+
+- 📋 Main dashboard with leads list
+- 📝 Lead detail panel (slide-over)
+- 💼 Opportunities management
+- 📱 Mobile-responsive design
+
 ## 📋 Features (MVP)
 
 ### Leads List
@@ -39,8 +52,22 @@ A lightweight console to triage **Leads** and convert them into **Opportunities*
 ### Nice-to-Haves Implemented
 
 - [x] Persist filter/sort in **localStorage**
-- [ ] Optimistic updates with rollback on failure
+- [x] **Optimistic updates with rollback on failure**
 - [x] Responsive layout (desktop → mobile)
+
+### Project Structure
+
+```
+src/
+├── ui/ (Design System - Base)
+├── managers/ (Business Logic - Core)
+├── hooks/ (React Integration - Bridge)
+├── components/ (Domain Components - Application)
+├── types/ (Shared Types)
+├── utils/ (Shared Utilities)
+├── data/ (Initial Data)
+└── mocks/ (Test Fixtures)
+```
 
 ## 💡 Prerequisites for Running the Project
 
@@ -82,5 +109,35 @@ npm run dev
 - [![React.js](https://img.shields.io/badge/-React.js-4682b4)](https://create-react-app.dev/docs/getting-started/)
 - [![Tailwind](https://img.shields.io/badge/-Tailwind-83C9C5)](https://tailwindcss.com/)
 - [![TypeScript](https://img.shields.io/badge/-Typescript-155991)](https://www.typescriptlang.org/docs/)
+
+## 📜 Available Scripts
+
+| Command            | Description              |
+| ------------------ | ------------------------ |
+| `npm run dev`      | Start development server |
+| `npm run build`    | Build for production     |
+| `npm run preview`  | Preview production build |
+| `npm run test`     | Run tests in watch mode  |
+| `npm run test:run` | Run all tests once       |
+| `npm run lint`     | Check code quality       |
+
+## 🧪 Testing
+
+The project includes **35 comprehensive tests** covering:
+
+- ✅ Business logic (LeadManager)
+- ✅ React integration (useLeadManager hook)
+- ✅ Optimistic updates with rollback
+- ✅ State management and persistence
+
+Run tests with: `npm run test`
+
+## 🏗️ Architecture Highlights
+
+- **🔄 Optimistic Updates**: Immediate UI response with automatic rollback on failure
+- **📦 Clean Architecture**: Separation between UI, business logic, and data
+- **🎨 Design System**: Reusable UI components with custom Tailwind theme
+- **⚡ Performance**: Efficient state management and re-rendering
+- **🧪 Testable**: 35 tests ensuring reliability
 
 ### Made with 💜 by Maylla Rabay
