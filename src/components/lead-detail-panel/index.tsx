@@ -8,6 +8,7 @@ type LeadDetailPanelProps = {
   onClose: () => void
   onSave: (lead: Lead | null) => void
   onConvert: (lead: Lead | null) => void
+  onLoading: boolean
 }
 
 export const LeadDetailPanel = ({
@@ -15,16 +16,19 @@ export const LeadDetailPanel = ({
   isOpen,
   onClose,
   onSave,
-  onConvert
+  onConvert,
+  onLoading
 }: LeadDetailPanelProps) => {
   const [editingLead, setEditingLead] = useState<Lead | null>(lead)
   const [emailError, setEmailError] = useState<string>("")
+  const [loadingOnSave, setLoadingOnSave] = useState<boolean>(false)
 
   useEffect(() => {
     if (!lead) {
       setEditingLead(null)
     } else {
       setEmailError("")
+      setLoadingOnSave(false)
       setEditingLead(lead)
     }
   }, [lead])
@@ -44,8 +48,13 @@ export const LeadDetailPanel = ({
       setEmailError("Invalid email format")
       return
     }
+    setLoadingOnSave(true)
     setEmailError("")
     onSave(editingLead)
+
+    setTimeout(() => {
+      setLoadingOnSave(false)
+    }, 2000)
   }
 
   const handleConvertLead = () => {
@@ -118,6 +127,7 @@ export const LeadDetailPanel = ({
                   onChange={handleEditLead}
                   variant={emailError ? "error" : "default"}
                   error={emailError}
+                  disabled={onLoading}
                 />
               </div>
 
@@ -132,7 +142,7 @@ export const LeadDetailPanel = ({
                       : editingLead?.status || "New"
                   }
                   onChange={handleEditLead}
-                  disabled={lead?.status === "Converted"}
+                  disabled={lead?.status === "Converted" || onLoading}
                 >
                   <option value="New">New</option>
                   <option value="Contacted">Contacted</option>
@@ -165,9 +175,10 @@ export const LeadDetailPanel = ({
               <div className="pt-4 border-t border-gray-200">
                 <Button
                   onClick={handleConvertLead}
-                  disabled={lead?.status === "Converted"}
+                  disabled={lead?.status === "Converted" || onLoading}
                   variant={"primary"}
                   className="w-full"
+                  isLoading={onLoading && !loadingOnSave}
                 >
                   Convert to Opportunity
                 </Button>
@@ -176,10 +187,19 @@ export const LeadDetailPanel = ({
           </div>
 
           <div className="flex justify-end space-x-3 pt-4 border-t border-gray-200">
-            <Button onClick={handleOnClose} variant="outline">
+            <Button
+              onClick={handleOnClose}
+              variant="outline"
+              disabled={onLoading}
+            >
               Cancel
             </Button>
-            <Button onClick={handleSaveLead} variant="primary">
+            <Button
+              onClick={handleSaveLead}
+              variant="primary"
+              disabled={onLoading}
+              isLoading={loadingOnSave}
+            >
               Save
             </Button>
           </div>

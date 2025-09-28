@@ -5,9 +5,9 @@ type LeadsListProps = {
   isLoading: boolean
   leads: Lead[]
   searchTerm: string
-  setSearchTerm: React.Dispatch<React.SetStateAction<string>>
+  setSearchTerm: (term: string) => void
   filterStatus: string
-  setFilterStatus: React.Dispatch<React.SetStateAction<string>>
+  setFilterStatus: (status: string) => void
   onLeadClick: (lead: Lead) => void
 }
 

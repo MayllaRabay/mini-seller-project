@@ -16,7 +16,7 @@ export const OpportunitiesList = ({
         Opportunities
       </Text>
       {opportunities.length === 0 ? (
-        <div className="text-center p-8">
+        <div className="text-center p-10">
           <Text color="muted">No opportunities yet.</Text>
         </div>
       ) : (
